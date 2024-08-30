@@ -5,7 +5,7 @@ import Button from './Button';
 import Summary from './summary';
 import {useNavigate} from 'react-router-dom';
 import CustomBox from './Box';
-
+import Logic from './logic';
 
 const StudentExercise1 = () => {
   // State variables
@@ -133,6 +133,9 @@ const StudentExercise1 = () => {
           setResultMessage2 (result);//This statement assigns "result" variable to the "ResultMessage2" variable
           localStorage.setItem('resultMessage2', result); //This line stores "result" in local storage so it can be retrieved and displayed in the summary page. 
           navigate('/page2'); // This line of code is used to navigate to page 2
+          
+          const results = Logic();
+          console.log("Results from Logic:", results);
         }
 
         
@@ -160,10 +163,15 @@ const StudentExercise1 = () => {
     setVolume("")
     setFrequency("")
 
+    const results = Logic();
+    console.log("Results from Logic:", results);
+
   };
 
   function handleOnClick2(event) {
     navigate('/page0'); // Function to navigate back to the home page
+    const results = Logic();
+    console.log("Results from Logic:", results);
   };
 
   useEffect(() => {
@@ -178,129 +186,143 @@ const StudentExercise1 = () => {
     setAnswer2(storedAnswer2);
     setInputOne(storedInputOne);
     setInputTwo(storedInputTwo);
-  }, []);
 
+    // Call the Logic function to execute the code
+    const results = Logic();
+    console.log("Results from Logic:", results);
+  }, []);
+/*
+  useEffect(() => {
+    // Call the Logic function to execute the code
+    const results = Logic();
+    console.log("Results from Logic:", results);
+  }, []);
+*/
 
 
   return (
-    <div style = {{ alignment : "center"}}>
-      
+    <div style={{ alignment: "center" }}>
+        <form onSubmit={handleSubmit}>
+            <CustomBox width="500px" height="550px">
+                <div>
+                    <div>
+                        <ol start="5">
+                            {/* Question 1 - Independent grid points per run */}
+                            <li>Determine the following:</li>
+                            <label>Total number of independent grid-points: <br></br>
+                              <input
+                                type="text"
+                                value={inputOne}
+                                onChange={handleInputChange}
+                                name="inputOne"/>
+                                </label>
+                            <br />
+                            <br />
+                           {/*Question 1 - input2*/}
+                          <label>Number of &#123;node, GPU&#125;: per run: <br></br>
+                            <input
+                              type="text"
+                              value={inputTwo}
+                              name="inputTwo"
+                              onChange= {handleInputChange}
+                            /></label>
+                        </ol>
+                    </div>
 
-      <form onSubmit={handleSubmit}>
-      <CustomBox width ="500px" height= "550px">
-        <div>
-                    
-          <div>
-            <ol>
-              {/*Question 1 - Independent grid points per run*/}
-              <li>Determine the following:</li>
-              
-            
-            </ol>
-          </div>
-          
-          <ol start={2}>
-           {/*Question 1 - input1*/}
-          <label>Total number of independent grid-points: <br></br>
-        <input
-          type="text"
-          value={inputOne}
-          onChange={handleInputChange}
-          name="inputOne"
-          
-        /></label>
-        <br />
-        <br />
-         {/*Question 1 - input2*/}
-        <label>Number of &#123;node, GPU&#125;: per run: <br></br>
-        <input
-          type="text"
-          value={inputTwo}
-          name="inputTwo"
-          onChange= {handleInputChange}
-        /></label>
-        <br />
-        <br />
-            <li><div style={{ display: 'flex', alignItems: 'center' }}>
-               {/*Question 2 - I/O Frequency*/}
-                What is the volume and frequency of I/O?
-                <CustomTooltip title="The volume and frequency of I/O refer to 
-                       the amount and rate of data being read from or written 
-                       to a storage device, affecting system performance and 
-                       responsiveness." placement="right" />
-              </div></li>
-              {/*Question 2 input1 - volume*/}
-              <label>Volume in MBytes <br></br>
-              <input
-                type="text"
-                name="volume"
-                value={volume}
-                onChange={handleInputChange}
-              /> <br></br><br></br>
-              </label>
-       
+                    <ol start="6">
+                        {/* Question 2 - I/O Frequency */}
+                        <li>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                What is the volume and frequency of I/O?
+                                <CustomTooltip
+                                    title="The volume and frequency of I/O refer to 
+                                    the amount and rate of data being read from or written 
+                                    to a storage device, affecting system performance and 
+                                    responsiveness."
+                                    placement="right"
+                                />
+                            </div>
+                        </li>
+                        {/* Question 2 input1 - volume */}
+                        <label>
+                            Volume in MBytes <br />
+                            <input
+                                type="text"
+                                name="volume"
+                                value={volume}
+                                onChange={handleInputChange}
+                            />
+                            <br /><br />
+                        </label>
 
-            <label>
-              {/*Question 2 input1 - frequency*/}
-              Time between I/O in seconds <br></br>
-              <input
-                type="text"
-                name="frequency"
-                value={frequency}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br></br><br></br>
-            <li><div style={{ display: 'flex', alignItems: 'center' }}>
+                        <label>
+                            {/* Question 2 input1 - frequency */}
+                            Time between I/O in seconds <br />
+                            <input
+                                type="text"
+                                name="frequency"
+                                value={frequency}
+                                onChange={handleInputChange}
+                            />
+                        </label>
+                        <br /><br />
+                    </ol>
 
-                {/*Question 3 - rate or throughput*/}
-                Do you have rate or throughput limitations?
-                <CustomTooltip title="Rate and throughput both refer to 
-		       the speed at which data is transferred, with rate 
-                       focusing on individual data units, while throughput 
-                       represents the overall data transfer capacity." placement="right" />
-              </div></li> 
-            <br></br>
-            <div id="options2">
-              <label>
-                <input
-                  type="radio"
-                  name="answer2"
-                  value="rate"
-                  checked={answer2 === 'rate'}
-                  onChange={handleInputChange}
-                />{' '}
-                Rate
-              </label>
-              <label style = {{marginLeft: "60px"}}>
-                <input
-                  type="radio"
-                  name="answer2"
-                  value="throughput"
-                  checked={answer2 === 'throughput'}
-                  onChange={handleInputChange}
-                />{' '}
-                Throughput
-              </label> 
-              <br></br>
+                    <ol start="7">
+                        {/* Question 3 - rate or throughput */}
+                        <li>
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                Do you have rate or throughput limitations?
+                                <CustomTooltip
+                                    title="Rate and throughput both refer to 
+                                    the speed at which data is transferred, with rate 
+                                    focusing on individual data units, while throughput 
+                                    represents the overall data transfer capacity."
+                                    placement="right"
+                                />
+                            </div>
+                        </li>
+                        <br />
+                        <div id="options2">
+                            <label>
+                                <input
+                                    type="radio"
+                                    name="answer2"
+                                    value="rate"
+                                    checked={answer2 === 'rate'}
+                                    onChange={handleInputChange}
+                                />{' '}
+                                Rate
+                            </label>
+                            <label style={{ marginLeft: "60px" }}>
+                                <input
+                                    type="radio"
+                                    name="answer2"
+                                    value="throughput"
+                                    checked={answer2 === 'throughput'}
+                                    onChange={handleInputChange}
+                                />{' '}
+                                Throughput
+                            </label>
+                            <br />
+                        </div>
+                    </ol>
+                </div>
+                <br />
+            </CustomBox>
+            <div style={{ marginLeft: "253.5px", marginBottom: "100px" }}>
+                <Button text=" Back " onClick={handleOnClick2} />
+                <Button text="Clear" onClick={clearOptions} style={{ marginLeft: "10px", marginRight: "10px" }} />{/* Clear Button */}
+                <Button text="Next" /> {/* Submit Button */}
             </div>
-          </ol>
-        
-        </div><br></br>
-        </CustomBox>
-        <div style = {{marginLeft: "253.5px", marginBottom: "100px"}}>
-        <Button text=" Back " onClick={handleOnClick2}  />
-        
-        <Button text = "Clear" onClick = {clearOptions} style ={{ marginLeft : "10px" , marginRight:"10px"}} />{/*Clear Button*/}
-        <Button text="Next"/> {/*Submit Button*/}
-        
-        </div>
-        </form><br></br>
+        </form>
 
-
-      
+        
+        <br />
     </div>
-  );
+
+
+);
 };
 
 export default StudentExercise1;

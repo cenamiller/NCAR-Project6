@@ -20,7 +20,9 @@ const HomeContent = () => {
       <CustomBox width ="500px" height= "550px"><p>
          Welcome! This website is designed to assist you in evaluating whether 
          your science objective is well-suited for GPU-enabled computing. 
-	 The assessment comprises four pages containing a series of questions 
+
+
+         <br></br><br></br>The assessment comprises four pages containing a series of questions 
          that you will answer in sequence. Upon completion, the summary page 
          will provide tailored feedback based on your responses. Should your 
          science objective align favorably with GPU-enabled computing, the 

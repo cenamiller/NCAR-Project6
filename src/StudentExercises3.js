@@ -3,6 +3,7 @@ import React, { useState , useEffect } from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from './Button';
 import CustomBox from './Box';
+import Logic from './logic';
 
 
 const StudentExercise3 = () => {
@@ -126,6 +127,9 @@ const StudentExercise3 = () => {
         localStorage.setItem('numVar', numVar);
         localStorage.setItem('wordSize', wordSize);
         localStorage.setItem('inputValue', inputValue);
+
+        const results = Logic();
+        console.log("Results from Logic:", results);
 
         setResultMessage4 (result);//This statement assigns "result" variable to the "ResultMessage3" variable
         localStorage.setItem('resultMessage4', result); //This line stores "result" variable in local storage so it can be retrieved and displayed in the summary page. 

@@ -4,12 +4,14 @@ import {useNavigate} from 'react-router-dom';
 import CustomTooltip from './ToolTip';
 import Button from './Button';
 import CustomBox from './Box';
+import Logic from './logic';
 
 
 
 
 
 const StudentExercise0 = () => {
+
   // State variables
   const [make, setMakefile] = useState(localStorage.getItem('make') || '');
   const [flex, setFlexibility] = useState(localStorage.getItem('flex') || '');
@@ -26,6 +28,13 @@ const StudentExercise0 = () => {
     setRCS(localStorage.getItem('rcs') || '');
     setVerify(localStorage.getItem('verify') || '');
   }, []);
+
+  useEffect(() => {
+    // Call the Logic function to execute the code
+    const results = Logic();
+    console.log("Results from Logic:", results);
+  }, []);
+
   
   
 

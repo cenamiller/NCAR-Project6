@@ -3,6 +3,7 @@ import React, { useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Button from './Button';
 import CustomBox from './Box';
+import Logic from './logic';
 
 function StudentExercise2() {
    // State variables
@@ -161,6 +162,9 @@ function StudentExercise2() {
     localStorage.setItem('answer12', answer12);
     localStorage.setItem('answer13', answer13);
     localStorage.setItem('answer14', answer14);
+    // Call the Logic function to execute the code
+    const results = Logic();
+    console.log("Results from Logic:", results);
       
   };
 
@@ -215,6 +219,8 @@ function StudentExercise2() {
       localStorage.removeItem('answer11');
       setAnswer11('');
     }
+
+    
   }, []);
   
 

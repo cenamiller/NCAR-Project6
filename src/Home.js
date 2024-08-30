@@ -23,9 +23,9 @@ const HomePage = () => {
 
       <div className="content">
         {/* Header component */}
-        <Header title="HOME PAGE" subtitle="5 MINUTES" />
+        <Header title="Is your model ready for GPU acceleration?" subtitle="5 MINUTES" />
         <div className="background-image">
-        <Hiking imageUrl={HikingImage} height = "520px" width = "825px" imagePosition={[45, -40]} creditPosition={{ bottom: 75, right: -60 }}/>
+          <Hiking imageUrl={HikingImage} height="520px" width="825px" imagePosition={[45, -40]} creditPosition={{ bottom: 75, right: -60 }} />
         </div>
         <Routes>
           {/* Route for StudentExercise0 */}
