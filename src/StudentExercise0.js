@@ -18,7 +18,7 @@ const StudentExercise0 = () => {
   const [rcs, setRCS] = useState(localStorage.getItem('rcs') || '');
   const [verify, setVerify] = useState(localStorage.getItem('verify') || '');
   const [submitted, setSubmitted] = useState(false);
-  const [resultMessage, setResultMessage] = useState('');
+  //const [resultMessage, setResultMessage] = useState('');
   const [showAnswers, setShowAnswers] = useState(false);
   const navigate = useNavigate();
 
@@ -63,72 +63,6 @@ const StudentExercise0 = () => {
     if (make && flex && rcs && verify ) {
       setSubmitted(true);
 
-      //This string is shown if user chooses one or more "No"s 
-      const start = 'Based on your answers, it appears that there is still some work that needs to be done before you can start the process of GPU-enablement. \xa0 In particular the following steps should be done first:';
-
-      //This string is displayed if the user chooses No for Question 1
-      const string1 = 'Create a Makefile'; 
-
-      //This string is displayed if the user chooses No for Question 2
-      const string2 = 'Add the ability to flexibly execute the code by other users'; 
-
-      //This string is displayed if the user chooses No for Question 3
-      const string3 = 'Add your code  into revision control system like Git'; 
-
-      //This string is displayed if the user chooses No for Question 4
-      const string4 = 'Develop a verification framework that allows the identification of non-bit-for-bit \n\t answer changes from software bugs'; 
-
-      //This variables is used to create an ordered list for the output. 
-      //num increments as the number of "No"s chosen by the user go 
-      let num = 0 
-      
-
-      //An empty string is initialized which is later used to output the result message.
-      let result = "" ; 
-
-
-      if (make === "yes" && flex === "yes" && rcs === "yes" && verify === "yes"){ 
-        //When user choses all "Yes"s, this string is displayed
-        result = 'Your application is a good match for GPU enabled computing! :)' 
-      } else {
-        //If the user choose one or more "No"s, the "start" string is set to the 
-        // empty "result" string
-        result = start 
-      }
-
-      // Construt the result string based on user i nput 
-      if(make === "no"){
-        num += 1 
-        // If the first answer is no, then string1  is concatenated to the "result" string
-        result += '\n\t' + num + ". " + string1 
-      }
-
-      if(flex === "no"){
-        // Since the answer is no, num is incremented and concatenated to the second string
-        num += 1 
-        // If the second answer is no, then string2 is concatenated to the "result" string
-        result += "\n\t"+ num + ". " + string2 
-      }
-      if(rcs === "no"){
-        num += 1
-        // If the third answer is no, then string3 is concatenated to the "result" string
-        result += "\n\t"+ num + ". " + string3 
-      }
-
-      if(verify === "no"){
-        num += 1 
-        // If the second answer is no, then string4 is concatenated to the "result" string
-        result += "\n\t"+ num + ". " + string4
-        
-      }
-      
-      //This statement assigns "result" variable to the "ResultMessage" variable
-      setResultMessage (result); 
-
-      // This line stores result in local storage so it can be retrieved and displayed 
-      // in the summary page. 
-      localStorage.setItem('resultMessage', result); 
-
       // Navigate to page 1
       navigate('/page1'); 
      
@@ -145,7 +79,7 @@ const StudentExercise0 = () => {
     setFlexibility('');
     setRCS('');
     setVerify('');
-    setResultMessage ("");
+    //setResultMessage ("");
     setShowAnswers(false);
   };
 

@@ -19,7 +19,7 @@ function StudentExercise2() {
   const navigate = useNavigate();
   const smallBrStyle = { marginBottom: '0.2em' }; 
   const product = localStorage.getItem("product")
-  const NumGP = localStorage.getItem("divisionResult")
+  //const NumGP = localStorage.getItem("divisionResult")
 
    // Function to show the second part of question 1 when user selects "yes"
   const handleShowAdditionalQues = (event) => {
@@ -35,7 +35,7 @@ function StudentExercise2() {
   // Function to caculate points
 
   const calculatePoints = () => {
-    let newTotalPoints = 0; //variable to keep track of calculated points
+   // let newTotalPoints = 0; //variable to keep track of calculated points
     let allOptionsSelected = true; // Flag to track if all options are selected
 
     if ( //condition to check if all questions have been answered
@@ -47,104 +47,6 @@ function StudentExercise2() {
       (answer13 === 'yes' || answer13 === 'no') &&
       (answer14 === 'yes' || answer14 === 'no')
     ) {
-      if (answer10 === 'yes') { 
-        newTotalPoints += 0; //if first answer is yes, 0 points are added to newTotalPoints
-
-        if (answer11 === 'yes') {
-          newTotalPoints += 1; //if second answer is yes, 1 point is added to newTotalPoints
-        } else if (answer11 === 'no') {
-          newTotalPoints += 3; //if second answer is no, 3 points are added to newTotalPoints
-        }
-      } else if (answer10 === 'no') {
-        newTotalPoints += 4;  //if first answer is no, 4 points are added to newTotalPoints
-      }
-
-      if (answer12 === 'yes') {  
-        newTotalPoints += 1; //if third answer is yes, 1 point is added to newTotalPoints
-      } else if (answer12 === 'no') {
-        newTotalPoints += 7; //if third answer is no, 7 points are added to newTotalPoints
-      }
-
-      if (answer13 === 'yes') { 
-        newTotalPoints += 1; //if fourth answer is yes, 1 point is added to newTotalPoints
-      } else if (answer13 === 'no') {
-        newTotalPoints += 7; //if fourth answer is no, 7 points are added to newTotalPoints
-      }
-
-      if (answer14 === 'yes') {
-        newTotalPoints += 1; //if fifth answer is yes, 1 point is added to newTotalPoints
-      } else if (answer14 === 'no') {
-        newTotalPoints += 7; //if fifth answer is no, 7 points are added to newTotalPoints
-      }
-
-
-    setPointResult(newTotalPoints) //This statement assigns "newTotalPoints" variable to the "Total Points" variable
-     //This line stores "newTotalPoints" in local storage so it can be retrieved and displayed in the summary page. 
-
-    let result2 = "" //An empty string name "reslut2" is initialized which is later used to output the result message.
-    let num = 0 //This variables is used to create an ordered list for the output. 
-    //num increments as the number of "No"s chosen by the user go up
-    const start = "Let’s now discuss the difficulty of achieving the ROI."  //this string is added at the start of "result2" string
-
-    result2 += start // "start"  string is concatenated at the beginning of the "result2" string
-
-    //Below string is concatenated to "result2" string if "newTotalPoints" is greater less than 25
-    const string1 = " Based on your answers, it appears that your code is ready to start the process of GPU-enablement. Let us try and figure out how much work it might take."
-
-    //Below string is concatenated to the "result2" string if the user answers "yes" to question 1
-    const ques1yes = "It is great news that a version of your application has already been GPU-enabled. \n\t    This considerably reduces the difficulty." 
-    
-    //Below string is concatenated to the "result2" string if the user answers "no" to question 1
-    const ques1no = "It looks like your science objective is not currently GPU-enabled. \n\t    Based on your answers we can estimate effort to achieve GPU-enablement."
-
-    //Below string is concatenated to the "result2" string if the user answers "yes" to question 2
-    const ques2yes = "Also great news that the necessary physics packages are supported on GPU. It \n\t    sounds like you just need to learn how to submit jobs to a GPU-based platform"
-
-    //Below string is concatenated to the "result2" string if the user answers "no" to question 2
-    const ques2no = "Unfortunately  not all of the code necessary for your science objective is GPU-enabled. \n\t    The amount of work necessary to GPU-enable your science objective"
-
-    //Below string is concatenated to the "result2" string if the user answers "yes" to question 3
-    const ques3yes = `It appears that the number of grid points per GPU or node [${NumGP}] is approximately \n\t    equal to the number of iterations in loop bodies [${product}]. This greatly simplifies \n\t    GPU-enablement because all the parallelism is exposed in one place. \n\t    Congratulations, it appears that your code is GPU-ready.\n\t\t i. The next step is to decide on the programming approach to achieve GPU-\n\t\t    enablement. Several programming options are available including: \n\t\t\ta. Language based approaches using C++ productivity frameworks \n\t\t\tb. Writing in an explicitly GPU based language like CUDA, CUDA Fortran\n\t\t\t     or HIP\n\t\t\tc. Directive based approaches \n\t\tii.The choice of programming language approach is based on your goals\n\t\t\ta. Do you want to maintain portability across multiple compute platforms → \n\t\t\t    productivity framework or directive based approach \n\t\t\tb. Not concerned about portability → consider explicitly GPU based \n\t\t\t    languages \n`
-    //Below string is concatenated to the "result2" string if the user answers "yes" to question 3
-    const ques3no = `Because the total number of grid points per GPU or node [${NumGP}] is significantly larger \n\t    than the number of iterations [${product}] this looks like some code transformation is \n\t    necessary. Unfortunately this is quite common and can take a significant amount of \n\t    effort to adequately expose the parallelism necessary`
-
-
-    if (newTotalPoints < 25){
-      result2 += string1 //if newTotalPoints is less than 25, string is concatentaed at the beginning of the "result2" string
-    }
-
-    if(answer10 === "yes"){
-      //if first answer is "yes", num is incrementated and concatenated to the "result2" string along with "ques1yes" string
-      num += 1
-      result2 += "\n\t"+ num + ". " + ques1yes
-    }else{
-       //if first answer is "no", num is incrementated and concatenated to the "result2" string along with "ques1no" string
-      num += 1
-      result2 += "\n\t"+ num + ". " + ques1no
-    }
-
-    if(answer11 === "yes"){
-       //if second answer is "yes" num is incrementated and concatenated to the "result2" string along with "ques2yes" string
-      num += 1
-      result2 += "\n\t"+ num + ". " + ques2yes
-    }else{
-       //if second answer is "no" num is incrementated and concatenated to the "result2" string along with "ques2no" string
-      num += 1
-      result2 += "\n\t"+ num + ". " + ques2no
-    }
-
-    if(answer12 === "yes"){
-       //if third answer is "yes" num is incrementated and concatenated to the "result2" string along with "ques3yes" string
-      num += 1
-      result2 += "\n\t"+ num + ". " + ques3yes
-    }else{
-       //if third answer is "no" num is incrementated and concatenated to the "result2" string along with "ques3no" string
-      num += 1
-      result2 += "\n\t"+ num + ". " +  ques3no
-    }
-
-    setResultMessage3 (result2);//This statement assigns "result2" variable to the "ResultMessage3" variable
-    localStorage.setItem('resultMessage3', result2); //This line stores "result2" variable in local storage so it can be retrieved and displayed in the summary page. 
     navigate('/page3'); // This line of code is used to navigate to page 3
     } else {
       allOptionsSelected = false; // Set the flag to false if any option is not selected

@@ -58,85 +58,11 @@ const StudentExercise1 = () => {
 
       if (inputOne && inputTwo && volume && frequency && answer2) {// this condition checks if the user has entered all the inputs before clicking submit
         setSubmitted(true);
-
-
-        const x = parseFloat(inputOne); //converting string inputs to intergers
-        const y = parseFloat(inputTwo);
-        const w = parseFloat(volume)
-        const z = parseFloat(frequency)
-
-        if (!isNaN(x) && !isNaN(y) && !isNaN(w) && !isNaN(z)){
-          const division = x / y; //calculating division result
-          const iof = w / z; // calculating IOfreq by dividing volume with frequency 
-
-        
-          let result = "" //An empty string is initialized which is later used to output the result message.
-
-          //Below string is shown when the division result is greater than 50, iofreq is less than 100 and throughput is chosen  
-          const start1 = `Based on your input, it appears that your science objective is amenable to GPU-based computing. This assessment is based on several of your answers:`
-          //Below string is shown when division result is greater than 50
-          const True1 = `The number of grid points of ${divisionResult} per GPU or node is sufficient.Typically, a GPU based \n\t    computing solution requires in excessive of ${threshold} grid points per GPU`
-
-          //Below string is shown when iofreq is less than 100
-          const True2 = `GPU’s are designed for computationally heavy problems.\n You indicated that you \n\t\t    perform approximately ${volume} Mbytes of disk I/O every ${frequency} seconds. It sounds like a significant percentage of time for your application is spent performing computations. This is necessary but not sufficient condition for the efficient use of GPU-based computing.`
-
-
-          //Below string is shown if either division result is less than 50 OR iofreq is greater than 100 OR rate is chosen
-          const start2 = `Based on your input, it does not appear that your science objective is amenable to GPU-based computing.This assessment is based on several of your answers:`
-
-          //Below string is shown if division result is less than 50
-          const False1 = `The number of grid points per GPU or node is rather low ${divisionResult}. Typically, a GPU based \n\t    computing solution requires in excess of ${threshold} grid points per GPU. What can I do \n\t    about this?\n\t\ta. Is the size of your problem sufficient to address your science objective or is it a \n\t\t    limitation of your existing compute solution. If it is sufficient to address your \n\t\t    science objective, then there does not appear to be an advantage of GPU-\n\t\t    based solution versus a CPU-based solution. If it is not sufficient, then a GPU-\n\t\t    based solution may enable improvement of the fidelity of your simulations.`
-          
-            //Below string is shown if iofrq is greater than 100
-          const False2 = `GPU’s are designed for computationally heavy problems. You indicated that \n\t    you perform approximately ${volume} Mbytes of disk I/O every ${frequency} seconds. \n\t    A significant percentage of time for your application will likely be spent moving data \n\t    from the GPU memory to the disk subsystem. What can I do about this? \n\t    Can you reduce the amount of I/O that your application performs`
-          //Below string is shown if rate is chosen
-          const False3 = `You indicated that your problem has a [[strong, moderate, weak} ${answer2} limitation. \n\t    While GPU-based computing can successfully be used for both rate and throughput \n\t    computing tasks, it frequently does better for throughput based computing.`
-
-
-          let num = 0//This variables is used to create an ordered list for the output. 
-          //num increments as the number of "No"s chosen by the user go up
-        
-          if ( division > 50 && iof < 100 && answer2 === "throughput"){ 
-            //if division result is greater than 50, iofreq is less than 100 and throuhgput is chosen, "start1", "True1" and "True2" are concatenated
-            result = start1 + "\n\t a. " + True1 + "\n\t b. "+ True2
-          }
-          else{
-            //if division result is less than 50 OR iofreq is greater than 100 OR rate is chosen, then "start2" is set to the empty "result" string
-            result = start2 
-          }
-
-          if (division < 50){
-            //if division is less than 50, num is incremented and concatenated to the result string alog with "False1" 
-            num +=1
-            result += "\n\t"+ num + ". " + False1
-          }
-
-          if (iof > 100){
-             //if iofreq is greater than 100, num is incremented and concatenated to 
-             // the result string alog with "False2" 
-             num +=1
-             result += "\n\t"+ num + ". " + False2
-          }
-
-          if(answer2 === "rate"){
-             // if rate is chosen, num is incremented and concatenated to the result 
-             // string alog with "False3" 
-             num +=1
-             result += "\n\t"+ num + ". " + False3
-          }
-
-
-          setDivisionResult(division); //This statement assigns "division" variable to the "divisionResult" variable
-          localStorage.setItem('divisionResult', division); //This line stores "division" in local storage so it can be retrieved and displayed in the summary page. 
-          setIOfreq(iof);//This statement assigns "iof" variable to the "iofreq" variable
-          localStorage.setItem('iofreq', iof);//This line stores "iof" in local storage so it can be retrieved and displayed in the summary page. 
-          setResultMessage2 (result);//This statement assigns "result" variable to the "ResultMessage2" variable
-          localStorage.setItem('resultMessage2', result); //This line stores "result" in local storage so it can be retrieved and displayed in the summary page. 
           navigate('/page2'); // This line of code is used to navigate to page 2
           
           const results = Logic();
           console.log("Results from Logic:", results);
-        }
+        
 
         
         

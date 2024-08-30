@@ -92,37 +92,6 @@ const StudentExercise3 = () => {
 
         //This line stores "product" variable in local storage so it can be retrieved and displayed in the summary page. 
         localStorage.setItem('product', product);
-        
-
-        //working set size (wss) is calculated by multiplying "product", "numVar" and "wordSize"
-        let wss = product * parseInt(numVar) * parseInt(wordSize)
-
-
-        let result = "" //An empty string named "result" is initialized which is later used to output the result message.
-
-        //string1 and string2 are concatenated at the start of the "result" string
-        const string1 = "Next let us discuss both the return on the investment (ROI) converting your computational infrastructure to GPU-based computing and the difficulty with achieving this ROI."
-        const string2 = `\t1. Let's first talk about Return on Investment.  You indicated that the extent of loop \n\t    bodies is approximately ${product}. You also indicated that a common loop body contains \n\t    ${numVar}, ${wordSize} bytes variables. This suggests that inner loops access ${wss} bytes of variables.`
-
-        //wws1 is concatenated the to "result" string if the value of "wss" is greater than 75
-        const wss1 = `a. Because  ${wss} wss is significantly larger than the typical last level cache size. \n\t\t    Your problem should achieve a ROI of approximately 3 to 4 due to the \n\t\t    differences in main memory bandwidth between CPU and GPU. Would a \n\t\t    reduction in the time to perform your science of 3 to 4 have a significant \n\t\t    impact on your ability to perform your science?`
-
-        //wws1 is concatenated the to "result" string if the value of "wss" is less than 75
-        const wss2 = `a. Because ${wss} wss is significantly smaller than the typical last level cache size. \n\t\t    Your code is likely already running pretty efficiently on a CPU-based platform. \n\t\t    GPU-enablement will yield a very modest ROI. `
-
-        result = string1 + "\n" + string2 //string1 and string2 are concatentaed the "result" string
-
-        if (wss > 75){
-        // if "wss" is greater than 75, "wss1" is concatenated to the "result" string
-          result += "\n\t\t" + wss1
-
-        } else {
-
-        // if "wss" is less than 75, "wss2" is concatenated to the "result" string
-
-          result += "\n\t\t" + wss2
-
-        }
         localStorage.setItem('selectedNumber', selectedNumber);
         localStorage.setItem('numVar', numVar);
         localStorage.setItem('wordSize', wordSize);
@@ -131,7 +100,7 @@ const StudentExercise3 = () => {
         const results = Logic();
         console.log("Results from Logic:", results);
 
-        setResultMessage4 (result);//This statement assigns "result" variable to the "ResultMessage3" variable
+        //setResultMessage4 (result);//This statement assigns "result" variable to the "ResultMessage3" variable
         localStorage.setItem('resultMessage4', result); //This line stores "result" variable in local storage so it can be retrieved and displayed in the summary page. 
         navigate('/page4'); // This line of code is used to navigate to page 4
 
