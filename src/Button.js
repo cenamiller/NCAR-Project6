@@ -10,12 +10,11 @@ const Button = ({ text, onClick, style}) => {
     cursor: 'pointer', /* Add a cursor pointer on hover */
     borderRadius: '5px',
     marginLeft: 0,
-    ... style
+    ...style
   };
 
-  const hoverStyle = {
-    backgroundColor: '#45a049', /* Change the background color on hover */
-  };
+  // Change the background color on hover
+  // const hoverStyle = {backgroundColor: '#45a049',};
 
   return (
     <button 

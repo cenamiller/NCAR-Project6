@@ -2,8 +2,7 @@
 import React from 'react';
 // Import custom components
 import ProgressBar from './ProgressBar';
-import Hiking from './hiking';
-import {Route, Routes, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import Button from './Button';
 import Summary from './summary';
 import Header from './header';

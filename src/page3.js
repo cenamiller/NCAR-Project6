@@ -1,27 +1,24 @@
 // Import required modules from 'react' and 'react-router-dom'
 import React from 'react';
-import {Route, Routes, useNavigate} from 'react-router-dom';
-// Import custom components
 import ProgressBar from './ProgressBar';
 import Hiking from './hiking';
 import StudentExercise3 from './StudentExercises3';
 
-import Button from './Button';
+// import Button from './Button';
 import Header from './header';
-import { Box } from '@mui/material';
 import HikingImage from './image/Fire.jpg';
 
 //Page 3 Component
 const Page3 = () => {
   const completed = 0; // Progress percentage
 
-  const navigate = useNavigate(); // React Router hook for navigation
+  // React Router hook for navigation
+  // const navigate = useNavigate();
 
 
 
-  function handleOnClick2(event) {
-    navigate('/'); // Navigate to the home page when the button is clicked
-  }
+  // Navigate to the home page when the button is clicked
+  // function handleOnClick2(event) { navigate('/');}
 
   return (
     <div className="container">

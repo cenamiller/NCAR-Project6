@@ -1,6 +1,6 @@
 // Import required modules from 'react' and 'react-router-dom'
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import HikingImage from './image/vehicle.jpg';
 
 // Import custom components
@@ -9,17 +9,14 @@ import Hiking from './hiking';
 import Header from './header';
 import Page2 from './page2';
 import StudentExercise1 from './StudentExercise1';
-import Button from './Button';
-import CustomBox from './Box';
 
 // Page 1 Component
 const Page1 = () => {
   const completed = 0; // Set the initial completed value for the progress bar
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  function handleClick(event) {
-    navigate('/page2'); // Function to navigate to page2
-  }
+  // Function to navigate to page2
+  // function handleClick(event) { navigate('/page2');}
 
 
 

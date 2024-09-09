@@ -1,6 +1,6 @@
 // Import required modules from 'react' and 'react-router-dom'
 import React from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // Import custom components
 import ProgressBar from './ProgressBar';
@@ -15,13 +15,11 @@ import HikingImage from './image/kidshiking.jpg';
 // Page0 component
 const Page0 = () => {
   const completed = 0; // Set the initial completed value here
-  const navigate = useNavigate(); 
+  // const navigate = useNavigate(); 
   
 
   // Function to handle button click and navigate to page1
-  function handleClick(event) {
-    navigate('/page1');
-  }
+  // function handleClick(event) { navigate('/page1'); }
 
   return (
     <div className="container">
