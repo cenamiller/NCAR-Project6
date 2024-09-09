@@ -2,16 +2,6 @@
 import React from 'react';
 
 
-
-const listLocalStorageVariables = () => {
-    console.log("Listing all variables in localStorage:");
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        const value = localStorage.getItem(key);
-        console.log(`${key}: ${value}`);
-    }
-};
-
 const Logic = () => {
 
 
@@ -117,145 +107,71 @@ const Logic = () => {
     console.log("Word Size:", wordSize);
 
 
- // CENA: This was the logic moved from Student Exercise 0
-
-    //This string is shown if user chooses one or more "No"s 
-    const start = 'Based on your answers, it appears that there is still some work that needs to be done before you can start the process of GPU-enablement. \xa0 In particular the following steps should be done first:';
-
-    //This string is displayed if the user chooses No for Question 1
-    const string1 = 'Create a Makefile'; 
-
-    //This string is displayed if the user chooses No for Question 2
-    const string2 = 'Add the ability to flexibly execute the code by other users'; 
-
-    //This string is displayed if the user chooses No for Question 3
-    const string3 = 'Add your code  into revision control system like Git'; 
-
-    //This string is displayed if the user chooses No for Question 4
-    const string4 = 'Develop a verification framework that allows the identification of non-bit-for-bit \n\t answer changes from software bugs'; 
-
-    //This variables is used to create an ordered list for the output. 
-    //num increments as the number of "No"s chosen by the user go 
-    let num = 0 
-    
-
-    //An empty string is initialized which is later used to output the result message.
-    let result = "" ; 
-
-
-    if (make === "yes" && flex === "yes" && rcs === "yes" && B4Bverify === "yes"){ 
-      //When user choses all "Yes"s, this string is displayed
-      result = 'Your application is a good match for GPU enabled computing! :)' 
-    } else {
-      //If the user choose one or more "No"s, the "start" string is set to the 
-      // empty "result" string
-      result = start 
-    }
-
-    // Construt the result string based on user i nput 
-    if(make === "no"){
-      num += 1 
-      // If the first answer is no, then string1  is concatenated to the "result" string
-      result += '\n\t' + num + ". " + string1 
-    }
-
-    if(flex === "no"){
-      // Since the answer is no, num is incremented and concatenated to the second string
-      num += 1 
-      // If the second answer is no, then string2 is concatenated to the "result" string
-      result += "\n\t"+ num + ". " + string2 
-    }
-    if(rcs === "no"){
-      num += 1
-      // If the third answer is no, then string3 is concatenated to the "result" string
-      result += "\n\t"+ num + ". " + string3 
-    }
-
-    if(B4Bverify === "no"){
-      num += 1 
-      // If the second answer is no, then string4 is concatenated to the "result" string
-      result += "\n\t"+ num + ". " + string4
-      
-    }
-
-
-
-    // This line stores result in local storage so it can be retrieved and displayed 
-    // in the summary page. 
-    localStorage.setItem('resultMessage', result); 
-    console.log("ResultMessage:", result);
-
+ // JMD:  All of this logic for Student exercise 0 has  has not been moved to the summary file.
 
      // CENA: This was the logic moved from Student Exercise 1
 
     
     if (!isNaN(gridPoints) && !isNaN(numNodes) && !isNaN(IOVolume) && !isNaN(IOFrequency)){
-        const division = gridPoints / numNodes; //calculating division result
+
+        const PointsPerNode = gridPoints / numNodes; // number of gridPoints per node
         const iof = IOVolume / IOFrequency; // calculating IOfreq by dividing volume with frequency 
 
       
-        let result1 = "" //An empty string is initialized which is later used to output the result message.
-
-        //Below string is shown when the division result is greater than 50, iofreq is less than 100 and throughput is chosen  
-        const start1 = `Based on your input, it appears that your science objective is amenable to GPU-based computing. This assessment is based on several of your answers:`
-        //Below string is shown when division result is greater than 50
-        const True1 = `The number of grid points of ${division} per GPU or node is sufficient.Typically, a GPU based \n\t    computing solution requires in excessive of ${threshold} grid points per GPU`
-
-        //Below string is shown when iofreq is less than 100
-        const True2 = `GPU’s are designed for computationally heavy problems.\n You indicated that you \n\t\t    perform approximately ${IOVolume} Mbytes of disk I/O every ${IOFrequency} seconds. It sounds like a significant percentage of time for your application is spent performing computations. This is necessary but not sufficient condition for the efficient use of GPU-based computing.`
-
-
-        //Below string is shown if either division result is less than 50 OR iofreq is greater than 100 OR rate is chosen
-        const start2 = `Based on your input, it does not appear that your science objective is amenable to GPU-based computing.This assessment is based on several of your answers:`
-
-        //Below string is shown if division result is less than 50
-        const False1 = `The number of grid points per GPU or node is rather low ${division}. Typically, a GPU based \n\t    computing solution requires in excess of ${threshold} grid points per GPU. What can I do \n\t    about this?\n\t\ta. Is the size of your problem sufficient to address your science objective or is it a \n\t\t    limitation of your existing compute solution. If it is sufficient to address your \n\t\t    science objective, then there does not appear to be an advantage of GPU-\n\t\t    based solution versus a CPU-based solution. If it is not sufficient, then a GPU-\n\t\t    based solution may enable improvement of the fidelity of your simulations.`
-        
-          //Below string is shown if iofrq is greater than 100
-        const False2 = `GPU’s are designed for computationally heavy problems. You indicated that \n\t    you perform approximately ${IOVolume} Mbytes of disk I/O every ${IOFrequency} seconds. \n\t    A significant percentage of time for your application will likely be spent moving data \n\t    from the GPU memory to the disk subsystem. What can I do about this? \n\t    Can you reduce the amount of I/O that your application performs`
-        //Below string is shown if rate is chosen
-        const False3 = `You indicated that your problem has a [[strong, moderate, weak} ${RateThroughput} limitation. \n\t    While GPU-based computing can successfully be used for both rate and throughput \n\t    computing tasks, it frequently does better for throughput based computing.`
-
+        let result1 = "";
 
         //let num = 0//This variables is used to create an ordered list for the output. 
         //num increments as the number of "No"s chosen by the user go up
+        let num1 = 0;
       
-        if ( division > 50 && iof < 100 && RateThroughput === "throughput"){ 
-          //if division result is greater than 50, iofreq is less than 100 and throuhgput is chosen, "start1", "True1" and "True2" are concatenated
-          result = start1 + "\n\t a. " + True1 + "\n\t b. "+ True2
-        }
-        else{
-          //if division result is less than 50 OR iofreq is greater than 100 OR rate is chosen, then "start2" is set to the empty "result" string
-          result1 = start2 
+        if ( PointsPerNode > 50 && iof < 100 && RateThroughput === "throughput"){ 
+          // GPU friendly science objective
+          result1 += 'Based on your input, it appears that your science objective is amenable to GPU-based computing.'
+		  + ' This assessment is based on several of your answers:' 
+		  + 'a. The number of grid points of ${PointsPerNode} per GPU or node is sufficient.'
+	          + 'Typically, a GPU based  computing solution requires in excessive of ${threshold} grid points per GPU'
+                  + 'b. GPUs are designed for computationally heavy problems.'
+                  + 'You indicated that you perform approximately ${IOVolume} Mbytes of disk I/O every ${IOFrequency} seconds.'
+		  + 'It sounds like a significant percentage of time for your application is spent performing computations.'
+		  + 'This is necessary but not sufficient condition for the efficient use of GPU-based computing.';
+        } else{
+          // Not a GPU friendly science objective
+          result1 += "Based on your input, it does not appear that your science objective is amenable to GPU-based computing."
+		  +  "This assessment is based on several of your answers:";
+          if (PointsPerNode < 50){
+             num1 +=1
+             result1 += "\n\t"+ num1 + ". " 
+                     + "The number of grid points per GPU or node is rather low ${PointsPerNode}." 
+                     +  "Typically, a GPU based computing solution requires in excess of ${threshold} grid points per GPU."
+		     +  "What can be done about this?"
+                     +  "Is the size of your problem sufficient to address your science objective or is it a"
+		     +  "limitation of your existing compute solution. If it is sufficient to address your science objective,"
+                     +  " then there does not appear to be an advantage of GPU-based solution versus a CPU-based solution."
+                     +  "If it is not sufficient, then a GPU-based solution may enable improvement of the fidelity of your simulations.";
+          }
+          if (iof > 100){
+             num1 +=1
+             result1 += "\n\t"+ num1 + ". " 
+                     + "GPU’s are designed for computationally heavy problems."
+		     + "You indicated that you perform approximately ${IOVolume} Mbytes of disk I/O every ${IOFrequency} seconds."
+                     + "A significant percentage of time for your application will likely be spent moving data from the GPU memory to the disk subsystem."
+                     + "What can I do about this? Can you reduce the amount of I/O that your application performs";
+           }
+
+           if(RateThroughput === "rate"){
+             num1 +=1
+             result1 += "\n\t"+ num1 + ". "
+                     + "You indicated that your problem has a [[strong, moderate, weak} ${RateThroughput} limitation."
+		     + "While GPU-based computing can successfully be used for both rate and throughput computing tasks,"
+		     + " it frequently does better for throughput based computing.";
+           }
         }
 
-        if (division < 50){
-          //if division is less than 50, num is incremented and concatenated to the result string alog with "False1" 
-          num +=1
-          result1 += "\n\t"+ num + ". " + False1
-        }
 
-        if (iof > 100){
-           //if iofreq is greater than 100, num is incremented and concatenated to 
-           // the result string alog with "False2" 
-           num +=1
-           result1 += "\n\t"+ num + ". " + False2
-        }
-
-        if(RateThroughput === "rate"){
-           // if rate is chosen, num is incremented and concatenated to the result 
-           // string alog with "False3" 
-           num +=1
-           result1 += "\n\t"+ num + ". " + False3
-        }
-
-
-        //setDivisionResult(division); //This statement assigns "division" variable to the "divisionResult" variable
-        localStorage.setItem('divisionResult', division); //This line stores "division" in local storage so it can be retrieved and displayed in the summary page. 
-        //setIOfreq(iof);//This statement assigns "iof" variable to the "iofreq" variable
-        localStorage.setItem('iofreq', iof);//This line stores "iof" in local storage so it can be retrieved and displayed in the summary page. 
-        //setResultMessage2 (result);//This statement assigns "result" variable to the "ResultMessage2" variable
-        localStorage.setItem('resultMessage1', result1); //This line stores "result" in local storage so it can be retrieved and displayed in the summary page.
+        // Store some variables in location storage so that they can be retrieved and displayed later.
+        localStorage.setItem('divisionResult', PointsPerNode);
+        localStorage.setItem('iofreq', iof);
+        localStorage.setItem('resultMessage1', result1);
         console.log("ResultMessage1:", result1);
     }
 
